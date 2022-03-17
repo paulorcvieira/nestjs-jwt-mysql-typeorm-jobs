@@ -1,5 +1,14 @@
-import { hashSync } from "bcrypt";
-import { BeforeInsert, Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { hashSync } from 'bcrypt';
+import { Exclude } from 'class-transformer';
+import {
+  BeforeInsert,
+  Column,
+  CreateDateColumn,
+  DeleteDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn
+} from 'typeorm';
 
 @Entity({ name: 'users' })
 export class UsersEntity {
@@ -16,12 +25,13 @@ export class UsersEntity {
   email: string;
 
   @Column()
+  @Exclude()
   password: string;
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: string;
 
-  @CreateDateColumn({ name: 'updated_at' })
+  @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: string;
 
   @DeleteDateColumn({ name: 'deleted_at' })
@@ -29,6 +39,6 @@ export class UsersEntity {
 
   @BeforeInsert()
   hashPassword() {
-    this.password = hashSync(this.password, 16)
+    this.password = hashSync(this.password, 16);
   }
 }

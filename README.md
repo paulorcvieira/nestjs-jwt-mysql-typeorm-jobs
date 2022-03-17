@@ -36,6 +36,11 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## Queue Admin
+
+[Bull Board](http://localhost:3000/api/admin/queues)
+
+
 ## License
 
 Nest is [MIT licensed](LICENSE).
